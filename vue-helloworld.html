@@ -6,17 +6,33 @@
 </head>
 <body>
   <div id="app">
-    {{ message }}
-    <span v-bind:title="message2">
-      Hover your mouse over me for a few seconds
-      to see my dynamically bound title!
-    </span>
-    <span v-if="seen">Now you see me</span>
-    <ol>
-      <li v-for="todo in todos">
-        {{ todo.text }}
-      </li>
-    </ol>
+    <div>
+      {{ message }}
+    </div>
+    <div>
+      <span v-bind:title="message2">
+        Hover your mouse over me for a few seconds
+        to see my dynamically bound title!
+      </span>
+    </div>
+    <div>
+      <span v-if="seen">Now you see me</span>
+    </div>
+    <div>
+      <ol>
+        <li v-for="todo in todos">
+          {{ todo.text }}
+        </li>
+      </ol>
+    </div>
+    <div>
+      {{ message3 }}
+      <button v-on:click="reverseMessage">Reverse Message</button>
+    </div>
+    <div>
+      <p>{{ message3 }}</p>
+      <input v-model="message3">
+    </div>
   </div>
 
   <script>
@@ -27,10 +43,16 @@
         message2: 'You loaded this page on ' + new Date().toLocaleString(),
         seen: true,
         todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
-    ]
+          { text: 'Learn JavaScript' },
+          { text: 'Learn Vue' },
+          { text: 'Build something awesome' }
+        ],
+        message3: 'Hello Vue.js!'
+      },
+      methods: {
+        reverseMessage: function () {
+          this.message3 = this.message3.split('').reverse().join('')
+        }
       }
     })
   </script>
